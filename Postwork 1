@@ -14,4 +14,4 @@
 	
 	(table(div$spain.f.FTAG)/dim(div)[1])*100 #probabilidades marginales de equipos visitante
 	
-(table(div)/dim(div)[1])*100
+	(table(div)/dim(div)[1])*100
