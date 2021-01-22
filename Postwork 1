@@ -1,0 +1,17 @@
+	url <- ("https://www.football-data.co.uk/mmz4281/1920/SP1.csv")
+	spain.f <- read.csv(file = url)
+	
+	dim(spain.f)
+	
+	spain.f$FTHG #goles casa
+	spain.f$FTAG #goles visitante
+	
+	div <- data.frame(spain.f$FTHG, spain.f$FTAG)
+	
+	?table()
+	
+	(table(div$spain.f.FTHG)/dim(div)[1])*100 #probabilidades marginales de equipos casa
+	
+	(table(div$spain.f.FTAG)/dim(div)[1])*100 #probabilidades marginales de equipos visitante
+	
+(table(div)/dim(div)[1])*100
