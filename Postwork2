@@ -1,0 +1,35 @@
+#Postwork Sesion 2 
+
+library(dplyr)
+
+setwd("C:/Users/hernands/Documents/DataScienceBEDU/R/Programacion-con-R-Santander-master/Sesion-02/Postwork")
+dir()
+
+url1 <- "https://www.football-data.co.uk/mmz4281/1718/D1.csv" 
+url2 <- "https://www.football-data.co.uk/mmz4281/1819/D1.csv"
+url3 <- "https://www.football-data.co.uk/mmz4281/1920/D1.csv"
+
+download.file(url = url1, destfile = "SP1-1718.csv", mode = "wb")
+download.file(url = url2, destfile = "SP1-1819.csv", mode = "wb")
+download.file(url = url3, destfile = "SP1-1920.csv", mode = "wb")
+
+
+lista <- lapply(list.files("." ,pattern = ".csv"), read.csv)
+
+str(lista[1]); str(lista[2]); str(lista[3])
+
+head(lista[1]); head(lista[2]); head(lista[3])
+
+View(lista[1]); View(lista[2]); View(lista[3])
+
+summary(lista[1]); summary(lista[2]); summary(lista[3])
+
+lista <- lapply(lista, select, Date, HomeTeam, AwayTeam, FTHG, FTAG, FTR)
+
+df <- do.call(rbind, lista)
+
+str(df)
+
+df <- mutate(df, Date = as.Date(Date, "%d/%m/%y"))
+
+str(df)
