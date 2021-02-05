@@ -1,3 +1,7 @@
+#   Utilizando el manejador de BDD Mongodb Compass (previamente instalado),
+#   deberás de realizar las siguientes acciones:
+###
+
 # 1. Alojar el fichero data.csv en una base de datos llamada match_games, 
 #    nombrando al collection como match
 
@@ -6,7 +10,7 @@ library(mongolite)
 db <- mongo(
   collection = "match",
   db = "match_games",
-  url = "mongodb+srv://user:password@modulor.mgoso.mongodb.net/test?readPreference=primary&ssl=true"
+  url = "mongodb+srv://Sofia:12345@beduda.uoxwo.mongodb.net/test?readPreference=primary&ssl=true"
 )
 
 # 2. Una vez hecho esto, realizar un count para conocer el número de registros 
@@ -28,7 +32,7 @@ db$find('{"Date": "2019-12-22", "HomeTeam": "Real Madrid"}')
 #  El resultado es un empate
 
 # 4. Agrega el dataset de mtcars a la misma BDD Por último, no olvides cerrar la conexión con la BDD.
-setwd("C:/Users/hernands/Documents/DataScienceBEDU/PW7")
+setwd("C:/Users/hernands/Documents/DataScienceBEDU/PW6")
 x <- jsonlite::toJSON(mtcars, collapse= '', byrow = TRUE)
 writeLines(x, sep='\n', 'mtcars.txt')
 db$import(file('mtcars.txt', 'r'))
