@@ -28,7 +28,7 @@ db$find('{"Date": "2019-12-22", "HomeTeam": "Real Madrid"}')
 #  El resultado es un empate
 
 # 4. Agrega el dataset de mtcars a la misma BDD Por último, no olvides cerrar la conexión con la BDD.
-setwd("C:/Users/hernands/Documents/DataScienceBEDU/PW6")
+setwd("C:/Users/hernands/Documents/DataScienceBEDU/PW7")
 x <- jsonlite::toJSON(mtcars, collapse= '', byrow = TRUE)
 writeLines(x, sep='\n', 'mtcars.txt')
 db$import(file('mtcars.txt', 'r'))
