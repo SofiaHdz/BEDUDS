@@ -7,13 +7,11 @@ library(dplyr)
 
 data <- read.csv("match.data.csv")
 mutate(data, date = as.Date(date, "%Y-%m-%d"))
-attach(data)
 
 # 1. Agrega una nueva columna sumagoles que contenga la suma de goles por partido.
 
 
 n = dim(data)[1]
-sumagoles <- rep(0, n)
 for (i in 1:n) {
   sumagoles[i] <-  data$home.score[i] + data$away.score[i]
 }
@@ -21,7 +19,6 @@ data <- cbind(data, sumagoles)
 
 
 # 2. Obtén el promedio por mes de la suma de goles.
-
 
 data <- mutate(data, Ym = format(as.Date(date), "%Y-%m"))
 goles <- data %>% group_by(Ym) %>% summarise(goles = mean(sumagoles))
