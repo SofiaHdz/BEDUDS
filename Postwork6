@@ -15,9 +15,9 @@ attach(data)
 n = dim(data)[1]
 sumagoles <- rep(0, n)
 for (i in 1:n) {
-  sumagoles[i] <-  datos$home.score[i] + datos$away.score[i]
+  sumagoles[i] <-  data$home.score[i] + data$away.score[i]
 }
-datos <- cbind(datos, sumagoles)
+data <- cbind(data, sumagoles)
 
 
 # 2. Obtén el promedio por mes de la suma de goles.
