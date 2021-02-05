@@ -1,0 +1,39 @@
+library(dplyr)
+library(fbRanks)
+
+url <- ("https://www.football-data.co.uk/mmz4281/1718/SP1.csv")
+url1 <-("https://www.football-data.co.uk/mmz4281/1819/SP1.csv")
+url2 <- ("https://www.football-data.co.uk/mmz4281/1920/SP1.csv")
+
+spain.f <- lapply(c(url, url1, url2), read.csv)
+
+spain.f <- lapply(spain.f, select, Date, HomeTeam:FTAG)           
+
+spain.f <- do.call(rbind, spain.f)
+
+colnames(spain)
+
+soccer <- spain.f %>% rename(date = Date, home.team = HomeTeam, home.score = FTHG, away.team = AwayTeam, away.score = FTAG)
+
+write.csv(soccer, file = "soccer.csv", row.names = FALSE)
+
+?create.fbRanks.dataframes
+
+listasoccer <- create.fbRanks.dataframes(scores.file = "soccer.csv", date.format =  "%d/%m/%Y")
+
+anotaciones <- listasoccer$scores
+
+equipos <- listasoccer$teams
+
+n <- anotaciones$date
+fecha <- unique(n)
+
+ranking <- rank.teams(scores = anotaciones, teams = equipos,
+                      min.date = fecha[1],
+                      max.date = fecha[length(fecha)-1])
+
+pred <- predict(ranking, date = fecha[length(fecha)])
+
+phw <- pred$scores$home.win
+paw <- pred$scores$away.win
+pt <- pred$scores$tie
