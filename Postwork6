@@ -24,7 +24,7 @@ data <- cbind(data, sumagoles)
 
 
 data <- mutate(data, Ym = format(as.Date(date), "%Y-%m"))
-goles <- datos %>% group_by(Ym) %>% summarise(goles = mean(sumagoles))
+goles <- data %>% group_by(Ym) %>% summarise(goles = mean(sumagoles))
 goles
 
 # 3. Crea la serie de tiempo del promedio por mes de la suma de goles hasta 
